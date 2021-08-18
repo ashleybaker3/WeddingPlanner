@@ -1,0 +1,11 @@
+@model Wedding
+
+<h1 class="text-center">@Model.WedderOne & @Model.WedderTwo's Wedding</h1>
+<h3 class="text-center mt-4">Date: @Model.Date.ToLongDateString()</h3>
+<h3 class="text-center mt-4">Guests:</h3>
+@foreach(var g in Model.Attendees)
+{
+    <h5 class="text-center">@g.User.FullName()</h5>
+}
+
+

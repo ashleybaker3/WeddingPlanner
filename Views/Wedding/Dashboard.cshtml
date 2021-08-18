@@ -1,0 +1,52 @@
+@model List<Wedding>
+
+<h1 class="text-center">Welcome to the Wedding Planner</h1>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Wedding</th>
+            <th scope="col">Date</th>
+            <th scope="col">Guest</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Wedding w in Model)
+        {
+            bool alreadyrsvped = w.Attendees.Any(rsvp => rsvp.UserID == Context.Session.GetInt32("UserID"));
+                <tr>
+                    <td><a asp-controller="Wedding" asp-action="View" asp-route-weddingID="@w.WeddingID">@w.WedderOne & @w.WedderTwo</a></td>
+                    <td>@w.Date.ToLongDateString()</td>
+                    @* <td>@w.Attendees.</td> *@
+                    @if(w.UserID!=Context.Session.GetInt32("UserID"))
+                    {
+                        <td>
+                            <form asp-controller="Wedding" asp-action="RSVP" asp-route-weddingID="@w.WeddingID" method="POST">
+                                @if(alreadyrsvped)
+                                {
+                                    <button class="btn btn-link">Un-RSVP</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-link">RSVP</button>
+                                }
+                            </form>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <form asp-controller="Wedding" asp-action="Delete" asp-route-weddingID="@w.WeddingID" method="POST">
+                                <button class="btn btn-link">Delete</button>
+                            </form>
+                        </td>
+                    }
+                    <td>Actions</td>
+                </tr>
+        }
+    </tbody>
+</table>
+<div class="justify-content-end">
+    <button class="btn justify-self-end border border-dark bg-info"><a asp-controller="Wedding" asp-action="New" class="text-white text-decoration-none">New Wedding</a></button>
+</div>

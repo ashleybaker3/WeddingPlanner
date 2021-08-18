@@ -1,0 +1,47 @@
+@model Wedding
+
+<h1 class="text-center">Success!</h1>
+
+<form asp-action="CreateWedding" asp-controller="Wedding" class="row">
+        <div class="col-auto">
+            <div class="row">
+                <span asp-validation-for="WedderOne" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="WedderOne" class="row form-label fs-5"></label>
+            </div>
+            <div class="row mb-4">
+                <input asp-for="WedderOne" class="form-control ">  
+            </div>
+            <div class="row">
+                <span asp-validation-for="WedderTwo" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="WedderTwo" class="row form-label fs-5"></label>
+            </div>
+            <div class="row mb-4">
+                <input asp-for="WedderTwo" class="form-control ">  
+            </div>
+            <div class="row">
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Date" class="row form-label fs-5"></label>
+            </div>
+            <div class="row mb-4">
+                <input asp-for="Date" class="form-control ">  
+            </div>
+            <div class="row">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Address" class="row form-label fs-5"></label>
+            </div>
+            <div class="row mb-4">
+                <input asp-for="Address" class="form-control ">  
+            </div>
+            <div class="row">
+                <button class="btn border border-dark col-auto">Add Wedding</button>
+            </div>
+        </div>
+</form>
